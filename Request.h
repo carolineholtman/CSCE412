@@ -1,10 +1,10 @@
-#ifndef REQUESTS_H
-#define REQUESTS_H
+#ifndef REQUEST_H
+#define REQUEST_H
 
 #include <string>
 #include <vector>
 
-class Requests
+class Request
 {
 private:
     // Private member variables
@@ -16,10 +16,10 @@ private:
 public:
     // Constructor
     // generate random in & out IPs, time to be processed, and job types
-    Requests();
+    Request();
     
     // Destructor
-    //~Requests();
+    //~Request();
     
     // Public member functions
     // getters for IPs, time, and job type
@@ -29,4 +29,4 @@ public:
     std::string getJobType() const;
 };
 
-#endif // REQUESTS_H
+#endif // REQUEST_H

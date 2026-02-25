@@ -1,10 +1,10 @@
-#ifndef WEBSERVERS_H
-#define WEBSERVERS_H
+#ifndef WEBSERVER_H
+#define WEBSERVER_H
 
 #include <string>
 #include <vector>
 
-class Webservers
+class Webserver
 {
 private:
     // Private member variables
@@ -13,14 +13,14 @@ private:
 public:
     // Constructor
     // generate random in & out IPs, time to be processed, and job types
-    Webservers();
+    Webserver();
     
     // Destructor
-    //~Webservers();
+    //~Webserver();
     
     // Public member functions
     
     
 };
 
-#endif // WEBSERVERS_H
+#endif // WEBSERVER_H
