@@ -15,14 +15,18 @@ private:
     
 public:
     // Constructor
+    // generate random in & out IPs, time to be processed, and job types
     Requests();
     
     // Destructor
-    ~Requests();
+    //~Requests();
     
     // Public member functions
-    // getters & setters for IPs, time, and job type
-    
+    // getters for IPs, time, and job type
+    std::string getIPIn() const;
+    std::string getIPOut() const;
+    float getTimeCC() const;
+    std::string getJobType() const;
 };
 
 #endif // REQUESTS_H
