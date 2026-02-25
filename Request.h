@@ -23,6 +23,7 @@ public:
     
     // Public member functions
     // getters for IPs, time, and job type
+    std::string generateRandomIP(); 
     std::string getIPIn() const;
     std::string getIPOut() const;
     float getTimeCC() const;
