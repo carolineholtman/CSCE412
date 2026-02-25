@@ -1,0 +1,2 @@
+numberServers=10
+timeToRunLB=10000
