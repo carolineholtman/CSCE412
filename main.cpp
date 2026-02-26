@@ -12,8 +12,16 @@ int main() {
     std::ifstream inputFile("userconfig.txt");
     if (inputFile.is_open()) {
         std::string line;
+        size_t lineCount = 1;
         while(std::getline(inputFile, line)) {
-            
+            size_t equalSign = line.find('=');
+            if(lineCount == 1){
+                numServers = std::stoi(line.substr(equalSign+1));
+            }
+            else{
+                runTime = std::stoi(line.substr(equalSign+1));
+            }
+            lineCount++;
         }
         inputFile.close();
     } else {
@@ -24,7 +32,15 @@ int main() {
         std::cin >> runTime;
     }
 
+    std::ofstream outputLog("outputlog.txt");
 
+    LoadBalancer lb(numServers, numServers*100);
+    
+    for(int i = 0; i < runTime; i++){
+        lb.onClockTick(outputLog);
+    }
+    
+    outputLog.close();
 
     return 0;
 }

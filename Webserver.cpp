@@ -6,6 +6,7 @@
 Webserver::Webserver() {
     // Initialize server
     isProcessing = false;
+    timeRemaining = 0.0f;
     
 
 }
@@ -20,7 +21,16 @@ void Webserver::processRequest(const Request req) {
     isProcessing = true;
     std::cout << "Processing request from IP: " << req.getIPIn() << std::endl;
     //code to make the server wait for the time specified in the request
-    isProcessing = false;
+    timeRemaining = req.getTimeCC();
+    
 }
 
+void Webserver::onClockTick() {
+    if (isProcessing) {
+        timeRemaining -= 1.0f; 
+        if (timeRemaining <= 0.0f) {
+            isProcessing = false;
+    }
+}
+}
 

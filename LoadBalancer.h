@@ -18,7 +18,7 @@ private:
 public:
     // Constructor
     // generate random in & out IPs, time to be processed, and job types
-    LoadBalancer();
+    LoadBalancer(int serverNums, int requestQueueNums);
     
     void addServer();
     void removeServer();
@@ -26,6 +26,10 @@ public:
     void addRequest();
 
     void assignRequest();
+
+    bool IPRangeBlocker(const std::string& ip);
+
+    void onClockTick(std::ofstream& outputLog);
     
 
 };

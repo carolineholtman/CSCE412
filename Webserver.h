@@ -11,6 +11,7 @@ private:
     // Private member variables
     Request requestProcessing;
     bool isProcessing;
+    float timeRemaining;
     
     
 public:
@@ -27,6 +28,7 @@ public:
     void processRequest(const Request req);
 
     bool getIsProcessing() const;
+    void onClockTick();
     
 };
 
