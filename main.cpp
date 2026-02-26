@@ -9,7 +9,7 @@ int main() {
     //fields for user input
     int numServers, runTime;
 
-    std::ifstream inputFile("userconfig.txt");
+    std::ifstream inputFile("userinputconfig.txt");
     if (inputFile.is_open()) {
         std::string line;
         size_t lineCount = 1;
@@ -35,7 +35,7 @@ int main() {
     std::ofstream outputLog("outputlog.txt");
 
     LoadBalancer lb(numServers, numServers*100);
-    
+
     for(int i = 0; i < runTime; i++){
         lb.onClockTick(outputLog);
     }

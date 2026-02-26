@@ -104,12 +104,12 @@ void LoadBalancer::onClockTick(std::ofstream& outputLog) {
     for(int i = 0; i < servers.size(); i++) {
         servers[i].onClockTick();
         if(servers[i].getIsProcessing()) {
-            outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(i) << " is processing a request.\n";
+            outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(i+1) << " is processing a request.\n";
         }
         else{
-            
 
             assignRequest();
+            outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(i+1) << " was idle but received a new request\n";
         }
     }
 
@@ -117,10 +117,13 @@ void LoadBalancer::onClockTick(std::ofstream& outputLog) {
     //Implement Queue logic add / remove servers
     if(requestQueue.size() < servers.size() * 50) {
         removeServer();
+        outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(servers.size()) << " was removed.\n";
         
     }
     else if(requestQueue.size() > servers.size() * 80) {
         addServer();
+        outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(servers.size()) << " was added.\n";
     }
+    outputLog << "\n";
 
 }
