@@ -19,7 +19,7 @@ bool Webserver::getIsProcessing() const {
 void Webserver::processRequest(const Request req) {
     // Process the incoming request
     isProcessing = true;
-    std::cout << "Processing request from IP: " << req.getIPIn() << std::endl;
+    //std::cout << "Processing request from IP: " << req.getIPIn() << std::endl;
     //code to make the server wait for the time specified in the request
     timeRemaining = req.getTimeCC();
     

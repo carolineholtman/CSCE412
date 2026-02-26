@@ -10,7 +10,7 @@ LoadBalancer::LoadBalancer(int serverNums, int requestQueueNums) {
         servers.push_back(Webserver());
     }
     for (int i = 0; i < requestQueueNums; i++) {
-        requestQueue.push_back(Request());
+        requestQueue.push(Request());
     }
     time = 0;
 }
@@ -30,28 +30,28 @@ void LoadBalancer::removeServer() {
 
 void LoadBalancer::addRequest() {
     //adds a new request to the current list of requests to simulate new requests being added in real time
-    requestQueue.push_back(Request());
+    requestQueue.push(Request());
 }
 
 void LoadBalancer::assignRequest() {
     if(!requestQueue.empty()) {
         for (Webserver& server : servers) {
             if (!server.getIsProcessing()) {
-                while(!IPRangeBlocker(requestQueue.back().getIPIn())) {
-                    requestQueue.pop_back();
+                while(!IPRangeBlocker(requestQueue.front().getIPIn())) {
+                    requestQueue.pop();
                     if(requestQueue.empty()) {
                         return;
                     }
                 }
-                server.processRequest(requestQueue.back());
-                requestQueue.pop_back();
+                server.processRequest(requestQueue.front());
+                requestQueue.pop();
                 break;
             }
         }
     }
 }
 
-bool IPRangeBlocker(const std::string& ip) {
+bool LoadBalancer::IPRangeBlocker(const std::string& ip) {
     // Implement logic to block certain IP ranges
     int first, second, third, fourth;
     std::istringstream ss(ip);
@@ -107,7 +107,7 @@ void LoadBalancer::onClockTick(std::ofstream& outputLog) {
             outputLog << "Time: " << std::to_string(time) << " - Server " << std::to_string(i) << " is processing a request.\n";
         }
         else{
-            //ADD IP RANGE BLOCKER
+            
 
             assignRequest();
         }

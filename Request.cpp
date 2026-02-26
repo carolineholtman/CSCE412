@@ -9,7 +9,7 @@ Request::Request() {
     IP_out = generateRandomIP();
     std::mt19937 gen(std::random_device{}());
     time_cc = std::uniform_real_distribution<float>(2.0f, 20.0f)(gen);
-    jobType = "S";// to be implemented with switch
+    jobType = (std::uniform_int_distribution<>(0, 1)(gen) == 0) ? "S" : "P";// to be implemented with switch
 
 }
 
@@ -26,24 +26,7 @@ std::string Request::generateRandomIP() {
 
 }
 
-Request::Request(const Request& other) {
-    // Copy constructor implementation
-    IP_in = other.IP_in;
-    IP_out = other.IP_out;
-    time_cc = other.time_cc;
-    jobType = other.jobType;
-}
 
-Request& Request::operator=(const Request& other) {
-    if (this != &other) {
-        // Copy assignment implementation
-        IP_in = other.IP_in;
-        IP_out = other.IP_out;
-        time_cc = other.time_cc;
-        jobType = other.jobType;
-    }
-    return *this;
-}
 
 std::string Request::getIPIn() const {
     return IP_in;
